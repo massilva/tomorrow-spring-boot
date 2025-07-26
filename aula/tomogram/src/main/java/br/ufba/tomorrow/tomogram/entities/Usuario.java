@@ -1,5 +1,6 @@
 package br.ufba.tomorrow.tomogram.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,9 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
 @Setter
 @NoArgsConstructor
 @Entity
@@ -20,6 +23,7 @@ public class Usuario {
 
     @Email
     @NotBlank
+    @Column(unique = true)
     private String email;
 
     @NotNull
@@ -29,9 +33,5 @@ public class Usuario {
     public Usuario(String email, String nome) {
         this.email = email;
         this.nome = nome;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
