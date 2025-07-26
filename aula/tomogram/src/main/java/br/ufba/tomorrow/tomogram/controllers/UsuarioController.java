@@ -1,5 +1,6 @@
 package br.ufba.tomorrow.tomogram.controllers;
 
+import br.ufba.tomorrow.tomogram.dtos.AtualizaUsuarioDTO;
 import br.ufba.tomorrow.tomogram.dtos.CriaUsuarioDTO;
 import br.ufba.tomorrow.tomogram.entities.Usuario;
 import br.ufba.tomorrow.tomogram.services.UsuarioService;
@@ -40,9 +41,8 @@ public class UsuarioController {
     // put
     @PutMapping("/{id}")
     public Usuario updateUsuario(@PathVariable("id") Long id,
-            @RequestBody Usuario usuario) {
-        usuario.setId(id);
-        return usuarioService.update(usuario);
+            @RequestBody AtualizaUsuarioDTO usuario) {
+        return usuarioService.update(id, usuario);
     }
 
     @DeleteMapping("/{id}")
