@@ -2,7 +2,6 @@ package br.ufba.tomorrow.tomogram;
 
 import br.ufba.tomorrow.tomogram.exceptions.NotFoundException;
 import br.ufba.tomorrow.tomogram.exceptions.models.ExceptionModel;
-import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,7 +1,10 @@
 package br.ufba.tomorrow.tomogram.services;
 
-import br.ufba.tomorrow.tomogram.datasource.GerenciadorDeUsuario;
+import br.ufba.tomorrow.tomogram.dtos.CriaUsuarioDTO;
 import br.ufba.tomorrow.tomogram.entities.Usuario;
+import br.ufba.tomorrow.tomogram.repositories.UsuarioRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,38 +12,29 @@ import java.util.Optional;
 
 @Service
 public class UsuarioService {
-    private final GerenciadorDeUsuario gerenciadorDeUsuario;
-
-    public UsuarioService(GerenciadorDeUsuario gerenciadorDeUsuario) {
-        this.gerenciadorDeUsuario = gerenciadorDeUsuario;
-    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public List<Usuario> findAll() {
-        return this.gerenciadorDeUsuario.getAllUsuarios();
+        return this.usuarioRepository.findAll();
     }
 
-    public Optional<Usuario> findById(int index) {
-        if (index < 0 || index >= gerenciadorDeUsuario.getSize()) {
-            return Optional.empty();
-        }
-        return Optional.of(gerenciadorDeUsuario.getUsuario(index));
+    public Optional<Usuario> findById(Long pk) {
+        return usuarioRepository.findById(pk);
     }
 
-    public void save(Usuario usuario) {
-        gerenciadorDeUsuario.createUsuario(usuario);
+    public Usuario save(CriaUsuarioDTO usuario) {
+        var user = new Usuario();
+        user.setEmail(usuario.getEmail());
+        user.setNome(usuario.getNome());
+        return usuarioRepository.save(user);
     }
 
-    public Optional<Usuario> update(int index, Usuario usuario) {
-        if (index < 0 || index >= gerenciadorDeUsuario.getSize()) {
-            return Optional.empty();
-        }
-        return Optional.of(gerenciadorDeUsuario.updateUsuario(index, usuario));
+    public Usuario update(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 
-    public void delete(int index) {
-        if (index < 0 || index >= gerenciadorDeUsuario.getSize()) {
-            return;
-        }
-        gerenciadorDeUsuario.deleteUsuario(index);
+    public void delete(Long pk) {
+        usuarioRepository.deleteById(pk);
     }
 }

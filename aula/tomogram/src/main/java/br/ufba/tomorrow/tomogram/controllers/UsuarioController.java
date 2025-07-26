@@ -1,5 +1,6 @@
 package br.ufba.tomorrow.tomogram.controllers;
 
+import br.ufba.tomorrow.tomogram.dtos.CriaUsuarioDTO;
 import br.ufba.tomorrow.tomogram.entities.Usuario;
 import br.ufba.tomorrow.tomogram.services.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,29 +25,29 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getUsuario(@PathVariable("id") int id) {
+    public ResponseEntity<Usuario> getUsuario(@PathVariable("id") Long id) {
         var optional =  usuarioService.findById(id);
         return ResponseEntity.of(optional);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> createUsuario(@RequestBody @Valid Usuario usuario) {
+    public ResponseEntity<Void> createUsuario(@RequestBody @Valid CriaUsuarioDTO usuario) {
         usuarioService.save(usuario);
         return ResponseEntity.noContent().build();
     }
 
     // put
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") int id,
+    public Usuario updateUsuario(@PathVariable("id") Long id,
             @RequestBody Usuario usuario) {
-        var optional = usuarioService.update(id, usuario);
-        return ResponseEntity.of(optional);
+        usuario.setId(id);
+        return usuarioService.update(usuario);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Void> deleteUsuario(@PathVariable("id") int id) {
+    public ResponseEntity<Void> deleteUsuario(@PathVariable("id") Long id) {
         usuarioService.delete(id);
         return ResponseEntity.noContent().build();
     }
