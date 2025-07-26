@@ -1,11 +1,13 @@
 package br.ufba.tomorrow.tomogram.services;
 
-import br.ufba.tomorrow.tomogram.GerenciadorDeUsuario;
+import br.ufba.tomorrow.tomogram.datasource.GerenciadorDeUsuario;
 import br.ufba.tomorrow.tomogram.entities.Usuario;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UsuarioService {
     private final GerenciadorDeUsuario gerenciadorDeUsuario;
 

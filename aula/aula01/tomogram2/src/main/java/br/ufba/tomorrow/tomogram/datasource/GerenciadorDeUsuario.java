@@ -1,4 +1,4 @@
-package br.ufba.tomorrow.tomogram;
+package br.ufba.tomorrow.tomogram.datasource;
 
 import br.ufba.tomorrow.tomogram.entities.Usuario;
 import org.springframework.stereotype.Component;

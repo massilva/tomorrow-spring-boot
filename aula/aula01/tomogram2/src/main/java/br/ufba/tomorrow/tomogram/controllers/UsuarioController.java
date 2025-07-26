@@ -1,4 +1,4 @@
-package br.ufba.tomorrow.tomogram;
+package br.ufba.tomorrow.tomogram.controllers;
 
 import br.ufba.tomorrow.tomogram.entities.Usuario;
 import br.ufba.tomorrow.tomogram.services.UsuarioService;
