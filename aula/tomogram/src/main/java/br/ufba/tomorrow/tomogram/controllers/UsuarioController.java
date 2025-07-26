@@ -3,6 +3,7 @@ package br.ufba.tomorrow.tomogram.controllers;
 import br.ufba.tomorrow.tomogram.entities.Usuario;
 import br.ufba.tomorrow.tomogram.services.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> createUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Void> createUsuario(@RequestBody @Valid Usuario usuario) {
         usuarioService.save(usuario);
         return ResponseEntity.noContent().build();
     }
