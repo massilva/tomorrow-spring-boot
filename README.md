@@ -11,5 +11,5 @@ Repositório particular do curso avançado de Programação Backend com Spring B
 
 ## Estrutura de pastas
 
-* `aula`: códigos compartilhados pelo professor, em sua maioria na íntegra. As suas subpastas estão padrão `aulaXY`, onde `XY` é o número da aula;
+* `aula`: códigos compartilhados pelo professor na aula.
 * `projeto`: tem o código-fonte do projeto final da disciplina;
