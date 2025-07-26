@@ -1,4 +1,4 @@
-package br.ufba.tomorrow.tomogram;
+package br.ufba.tomorrow.tomogram.entities;
 
 public class Usuario {
     private String email;

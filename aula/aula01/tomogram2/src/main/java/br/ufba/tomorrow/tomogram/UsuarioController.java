@@ -1,6 +1,9 @@
 package br.ufba.tomorrow.tomogram;
 
+import br.ufba.tomorrow.tomogram.entities.Usuario;
+import br.ufba.tomorrow.tomogram.services.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,48 +14,39 @@ import java.util.List;
 @RequestMapping("/usuarios")
 @Tag(name = "Usuários", description = "Operações com usuários")
 public class UsuarioController {
-    private GerenciadorDeUsuario gerenciador;
-
-    public UsuarioController(GerenciadorDeUsuario gerenciador) {
-        this.gerenciador = gerenciador;
-    }
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping
     public List<Usuario> getAllUsuarios() {
-        return gerenciador.getAllUsuarios();
+        return usuarioService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuario(@PathVariable("id") int id) {
-        if (id < 0 || id >= gerenciador.getSize()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(gerenciador.getUsuario(id));
+        var optional =  usuarioService.findById(id);
+        return ResponseEntity.of(optional);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUsuario(@RequestBody Usuario usuario) {
-        System.out.println(usuario);
-        gerenciador.createUsuario(usuario);
+    public ResponseEntity<Void> createUsuario(@RequestBody Usuario usuario) {
+        usuarioService.save(usuario);
+        return ResponseEntity.noContent().build();
     }
 
     // put
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") int id,
             @RequestBody Usuario usuario) {
-        if (id < 0 || id >= gerenciador.getSize()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(gerenciador.updateUsuario(id, usuario));
+        var optional = usuarioService.update(id, usuario);
+        return ResponseEntity.of(optional);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteUsuario(@PathVariable("id") int id) {
-        if (id < 0 || id >= gerenciador.getSize()) {
-            return ResponseEntity.notFound().build();
-        }
-        gerenciador.deleteUsuario(id);
+        usuarioService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
