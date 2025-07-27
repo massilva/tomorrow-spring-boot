@@ -1,8 +1,6 @@
 package br.ufba.tomorrow.gerenciador.services;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.Getter;
-import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
