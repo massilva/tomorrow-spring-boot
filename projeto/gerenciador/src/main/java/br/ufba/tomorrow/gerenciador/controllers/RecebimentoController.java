@@ -1,28 +1,17 @@
-package com.exemplo.controlegastos.controlegastosspringboot.model;
+@RestController
+@RequestMapping("/api/recebimentos")
+@RequiredArgsConstructor
+public class RecebimentoController {
 
-import jakarta.persistence.*;
-import lombok.*;
+    private final RecebimentoService recebimentoService;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Set;
+    @PostMapping
+    public Recebimento criar(@AuthenticationPrincipal Empresa empresa, @Valid @RequestBody RecebimentoDTO dto) {
+        return recebimentoService.salvar(empresa.getId(), dto);
+    }
 
-
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-
-public class Recebimento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String cliente;
-    private BigDecimal valor;
-    private LocalDate vencimento;
-    private boolean recebido;
-
-    @ManyToOne
-    private Empresa empresa;
+    @GetMapping
+    public List<Recebimento> listar(@AuthenticationPrincipal Empresa empresa) {
+        return recebimentoService.listar(empresa.getId());
+    }
 }
