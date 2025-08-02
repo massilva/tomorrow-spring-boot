@@ -27,7 +27,7 @@ public class EmpresaController {
     }
 
     @GetMapping("/count")
-    public Long quantidade() {
+    public Long quantidade() { 
         return empresaService.getCount();
     }
 }
