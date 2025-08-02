@@ -1,16 +1,19 @@
 
-package br.ufba.tomorrow.gerenciador.security;
+package br.ufba.tomorrow.gerenciador.config;
 
 
-import br.ufba.tomorrow.gerenciador.model.Empresa;
-import br.ufba.tomorrow.gerenciador.repository.EmpresaRepository;
-import lombok.RequiredArgsConstructor;
+import br.ufba.tomorrow.gerenciador.models.Empresa;
+import br.ufba.tomorrow.gerenciador.repositories.EmpresaRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
+import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
+@Service
 public class EmpresaUserDetailsService implements UserDetailsService {
 
-    private final EmpresaRepository empresaRepository;
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

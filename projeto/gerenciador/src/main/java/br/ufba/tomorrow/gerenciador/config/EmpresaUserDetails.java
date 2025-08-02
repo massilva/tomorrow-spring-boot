@@ -1,19 +1,20 @@
-package br.ufba.tomorrow.gerenciador.security;
+package br.ufba.tomorrow.gerenciador.config;
 
-import br.ufba.tomorrow.gerenciador.model.Empresa;
-import lombok.Getter;
+import br.ufba.tomorrow.gerenciador.models.Empresa;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-@Getter
 public class EmpresaUserDetails implements UserDetails {
 
-    private final Empresa empresa;
-
-    public EmpresaUserDetails(Empresa empresa) {
+    @Autowired
+    private Empresa empresa;
+    
+    public EmpresaUserDetails(@Autowired Empresa empresa) {
         this.empresa = empresa;
     }
 
