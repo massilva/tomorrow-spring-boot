@@ -1,7 +1,7 @@
-package com.exemplo.ufba.tomorrow.gerenciador.mapper;
+package br.ufba.tomorrow.gerenciador.mapper;
 
-import com.exemplo.ufba.tomorrow.gerenciador.dto.*;
-import com.exemplo.ufba.tomorrow.gerenciador.model.*;
+import br.ufba.tomorrow.gerenciador.dto.*;
+import br.ufba.tomorrow.gerenciador.model.*;
 
 public class RecebimentoMapper {
 
