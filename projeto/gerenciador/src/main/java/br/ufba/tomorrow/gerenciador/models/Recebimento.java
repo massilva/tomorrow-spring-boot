@@ -1,4 +1,4 @@
-package com.exemplo.br.ufba.tomorrow.gerenciador.model;
+package br.ufba.tomorrow.gerenciador.model;
 
 import jakarta.persistence.*;
 import lombok.*;
