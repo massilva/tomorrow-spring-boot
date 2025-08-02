@@ -1,7 +1,9 @@
-package br.ufba.tomorrow.gerenciador.repository;
+package br.ufba.tomorrow.gerenciador.repositories;
 
-import br.ufba.tomorrow.gerenciador.model.Recebimento;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.ufba.tomorrow.gerenciador.models.Recebimento;
+
 import java.util.List;
 
 public interface RecebimentoRepository extends JpaRepository<Recebimento, Long> {

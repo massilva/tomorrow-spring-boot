@@ -1,12 +1,14 @@
-package com.exemplo.ufba.tomorrow.gerenciador.service;
+package br.ufba.tomorrow.gerenciador.services;
 
-import com.exemplo.ufba.tomorrow.gerenciador.dto.*;
-import com.exemplo.ufba.tomorrow.gerenciador.mapper.RecebimentoMapper;
-import com.exemplo.ufba.tomorrow.gerenciador.model.*;
-import com.exemplo.ufba.tomorrow.gerenciador.repository.RecebimentoRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import br.ufba.tomorrow.gerenciador.dtos.RecebimentoDTO;
+import br.ufba.tomorrow.gerenciador.dtos.RecebimentoResponseDTO;
+import br.ufba.tomorrow.gerenciador.mappers.RecebimentoMapper;
+import br.ufba.tomorrow.gerenciador.models.Empresa;
+import br.ufba.tomorrow.gerenciador.models.Recebimento;
+import br.ufba.tomorrow.gerenciador.repositories.RecebimentoRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

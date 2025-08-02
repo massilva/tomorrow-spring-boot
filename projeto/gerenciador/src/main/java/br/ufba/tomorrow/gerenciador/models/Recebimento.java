@@ -1,11 +1,10 @@
-package br.ufba.tomorrow.gerenciador.model;
+package br.ufba.tomorrow.gerenciador.models;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Data
