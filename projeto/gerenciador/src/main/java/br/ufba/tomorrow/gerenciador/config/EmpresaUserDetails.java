@@ -1,0 +1,48 @@
+package br.ufba.tomorrow.gerenciador.config;
+
+import br.ufba.tomorrow.gerenciador.models.Empresa;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.*;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
+
+public class EmpresaUserDetails implements UserDetails {
+
+    @Autowired
+    private Empresa empresa;
+    
+    public EmpresaUserDetails(@Autowired Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(() -> "ROLE_EMPRESA");
+    }
+
+    @Override
+    public String getPassword() {
+        return empresa.getSenha();
+    }
+
+    @Override
+    public String getUsername() {
+        return empresa.getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
+    @Override
+    public boolean isEnabled() { return true; }
+}    
+    
