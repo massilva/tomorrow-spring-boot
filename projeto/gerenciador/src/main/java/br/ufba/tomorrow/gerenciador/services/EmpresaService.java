@@ -22,12 +22,15 @@ public class EmpresaService {
     public Empresa salvar(CadastraEmpresaDTO cadastraEmpresaDTO) {
         Empresa empresa = EmpresaMapper.INSTANCE.cadastraEmpresaDTOParaEmpresa(cadastraEmpresaDTO);
         empresa.setSenha(passwordEncoder.encode(empresa.getSenha()));
-        System.out.println(empresa);
         return empresaRepository.save(empresa);
     }
 
     public Empresa buscarPorId(Long id) {
         return empresaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada"));
+    }
+
+    public Long getCount() {
+        return empresaRepository.count();
     }
 }

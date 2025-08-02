@@ -25,4 +25,9 @@ public class EmpresaController {
     public Empresa cadastrar(@Validated @RequestBody CadastraEmpresaDTO cadastraEmpresaDTO) {
         return empresaService.salvar(cadastraEmpresaDTO);
     }
+
+    @GetMapping("/count")
+    public Long quantidade() {
+        return empresaService.getCount();
+    }
 }
