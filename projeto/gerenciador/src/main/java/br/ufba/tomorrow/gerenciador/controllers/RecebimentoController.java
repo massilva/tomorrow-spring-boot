@@ -1,12 +1,14 @@
-package br.ufba.tomorrow.gerenciador.controllers;
+package com.exemplo.ufba.tomorrow.gerenciador.controller;
 
-import com.exemplo.br.ufba.tomorrow.gerenciador.dto.EmpresaDTO;
-import com.exemplo.br.ufba.tomorrow.gerenciador.model.Empresa;
-import com.exemplo.br.ufba.tomorrow.gerenciador.service.EmpresaService;
+import com.exemplo.ufba.tomorrow.gerenciador.dto.*;
+import com.exemplo.ufba.tomorrow.gerenciador.model.Empresa;
+import com.exemplo.ufba.tomorrow.gerenciador.service.RecebimentoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/recebimentos")
@@ -16,12 +18,13 @@ public class RecebimentoController {
     private final RecebimentoService recebimentoService;
 
     @PostMapping
-    public Recebimento criar(@AuthenticationPrincipal Empresa empresa, @Valid @RequestBody RecebimentoDTO dto) {
+    public RecebimentoResponseDTO criar(@AuthenticationPrincipal Empresa empresa,
+                                        @Valid @RequestBody RecebimentoDTO dto) {
         return recebimentoService.salvar(empresa.getId(), dto);
     }
 
     @GetMapping
-    public List<Recebimento> listar(@AuthenticationPrincipal Empresa empresa) {
+    public List<RecebimentoResponseDTO> listar(@AuthenticationPrincipal Empresa empresa) {
         return recebimentoService.listar(empresa.getId());
     }
 }
