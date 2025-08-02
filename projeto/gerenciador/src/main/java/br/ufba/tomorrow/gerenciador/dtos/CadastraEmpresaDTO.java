@@ -9,6 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class CadastraEmpresaDTO {
+        @NotBlank
         private String nomeFantasia;
 
         @NotBlank(message = "Razão social é obrigatória")

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.ufba.tomorrow.gerenciador.dtos.AtualizaEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.dtos.CadastraEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.mappers.EmpresaMapper;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
@@ -43,5 +44,11 @@ public class EmpresaService {
 
     public Optional<Empresa> findById(Long id) {
         return empresaRepository.findById(id);
+    }
+
+    public Empresa update(Long id, AtualizaEmpresaDTO atualizaEmpresaDTO) {
+        Empresa empresa = EmpresaMapper.INSTANCE.atualizaEmpresaDTOParaEmpresa(atualizaEmpresaDTO);
+        empresa.setSenha(passwordEncoder.encode(empresa.getSenha()));
+        return empresaRepository.save(empresa);
     }
 }
