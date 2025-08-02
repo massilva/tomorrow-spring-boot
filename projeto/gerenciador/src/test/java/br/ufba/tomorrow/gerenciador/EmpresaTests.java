@@ -63,8 +63,8 @@ public class EmpresaTests {
                 "contato@tomorrow.com",
                 "senha123");
 
-        Empresa empresaSalva = new Empresa(1L, dto.getNomeFantasia(), dto.getRazaoSocial(),
-                dto.getCnpj(), dto.getEmail(), passwordEncoder.encode(dto.getSenha()));
+        Empresa empresaSalva = new Empresa(1L, dto.nomeFantasia(), dto.razaoSocial(),
+                dto.cnpj(), dto.email(), passwordEncoder.encode(dto.senha()));
 
         when(empresaRepository.save(any(Empresa.class))).thenReturn(empresaSalva);
         mockMvc.perform(post(getUrl("/register"))
