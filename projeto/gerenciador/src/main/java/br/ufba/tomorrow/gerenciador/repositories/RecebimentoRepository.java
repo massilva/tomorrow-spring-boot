@@ -1,6 +1,6 @@
-package com.exemplo.ufba.tomorrow.gerenciador.repository;
+package br.ufba.tomorrow.gerenciador.repository;
 
-import com.exemplo.ufba.tomorrow.gerenciador.model.Recebimento;
+import br.ufba.tomorrow.gerenciador.model.Recebimento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
