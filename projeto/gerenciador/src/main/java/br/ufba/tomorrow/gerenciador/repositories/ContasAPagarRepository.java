@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ContasAPagarRepository extends JpaRepository<ContasAPagar,Long> {
     List<ContasAPagar> findByEmpresaId(Long empresaId);
-    List<ContasAPagar> findByPago(Long empresaId, boolean pago);
+    List<ContasAPagar> findByEmpresaIdAndPago(Long empresaId, boolean pago);
 }

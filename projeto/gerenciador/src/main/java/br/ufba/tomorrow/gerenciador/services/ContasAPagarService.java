@@ -23,7 +23,7 @@ public class ContasAPagarService {
     }
 
     public List<ContasAPagar> listarPorEmpresaEPago(Long empresaId, boolean pago) {
-        return contasAPagarRepository.findByPago(empresaId, pago);
+        return contasAPagarRepository.findByEmpresaIdAndPago(empresaId, pago);
     }
 
     public ContasAPagar marcarComoPago(Long id, LocalDate dataPagamento) {
