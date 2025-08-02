@@ -51,4 +51,8 @@ public class EmpresaService {
         empresa.setSenha(passwordEncoder.encode(empresa.getSenha()));
         return empresaRepository.save(empresa);
     }
+
+    public void delete(Long id) {
+        empresaRepository.deleteById(id);
+    }
 }

@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated; 
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,21 +40,26 @@ public class EmpresaController {
     }
 
     @GetMapping
-    public List<Empresa> getAllUsuarios() {
+    public List<Empresa> findAll() {
         return empresaService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Empresa> getUsuario(@PathVariable("id") Long id) {
+    public ResponseEntity<Empresa> findById(@PathVariable("id") Long id) {
         var optional =  empresaService.findById(id);
         return ResponseEntity.of(optional);
     }
 
     @PutMapping("/{id}")
-    public EmpresaSalva updateUsuario(@PathVariable("id") Long id,
+    public EmpresaSalva update(@PathVariable("id") Long id,
             @RequestBody AtualizaEmpresaDTO empresa) {
         var empresaSalva = empresaService.update(id, empresa);
         return EmpresaMapper.INSTANCE.paraEmpresaSalva(empresaSalva);
     }
 
-}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        empresaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+}   
