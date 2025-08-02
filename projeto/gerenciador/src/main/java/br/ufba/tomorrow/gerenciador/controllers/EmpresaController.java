@@ -39,4 +39,10 @@ public class EmpresaController {
     public List<Empresa> getAllUsuarios() {
         return empresaService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Empresa> getUsuario(@PathVariable("id") Long id) {
+        var optional =  empresaService.findById(id);
+        return ResponseEntity.of(optional);
+    }
 }

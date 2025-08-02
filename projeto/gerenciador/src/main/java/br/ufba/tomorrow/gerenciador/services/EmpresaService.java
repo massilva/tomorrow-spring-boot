@@ -3,6 +3,7 @@ package br.ufba.tomorrow.gerenciador.services;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,5 +39,9 @@ public class EmpresaService {
 
     public List<Empresa> findAll() {
         return empresaRepository.findAll();
+    }
+
+    public Optional<Empresa> findById(Long id) {
+        return empresaRepository.findById(id);
     }
 }
