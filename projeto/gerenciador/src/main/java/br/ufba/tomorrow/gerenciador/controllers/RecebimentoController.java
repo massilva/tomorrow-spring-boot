@@ -1,7 +1,7 @@
-package com.exemplo.ufba.tomorrow.gerenciador.controller;
+package br.ufba.tomorrow.gerenciador.controller;
 
-import com.exemplo.ufba.tomorrow.gerenciador.dto.*;
-import com.exemplo.ufba.tomorrow.gerenciador.service.RecebimentoService;
+import br.ufba.tomorrow.gerenciador.dto.*;
+import br.ufba.tomorrow.gerenciador.service.RecebimentoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
