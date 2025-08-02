@@ -53,6 +53,12 @@ public class Empresa {
         this.senha = senha;
     }
 
+    public Empresa(String nomeFantasia, String razaoSocial, String cnpj) {
+        this.nomeFantasia = nomeFantasia;
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+    }
+
     @Override
     public String toString() {
         return "Empresa{" +

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.ufba.tomorrow.gerenciador.dtos.AtualizaEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.dtos.CadastraEmpresaDTO;
+import br.ufba.tomorrow.gerenciador.exceptions.NotFoundException;
 import br.ufba.tomorrow.gerenciador.mappers.EmpresaMapper;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
 import br.ufba.tomorrow.gerenciador.repositories.EmpresaRepository;
@@ -47,9 +48,13 @@ public class EmpresaService {
     }
 
     public Empresa update(Long id, AtualizaEmpresaDTO atualizaEmpresaDTO) {
+        var empresaSalva = empresaRepository.findById(id).orElseThrow(() -> new NotFoundException());
         Empresa empresa = EmpresaMapper.INSTANCE.atualizaEmpresaDTOParaEmpresa(atualizaEmpresaDTO);
         empresa.setSenha(passwordEncoder.encode(empresa.getSenha()));
-        return empresaRepository.save(empresa);
+        empresaSalva.setNomeFantasia(empresa.getNomeFantasia());
+        empresaSalva.setRazaoSocial(empresa.getRazaoSocial());
+        empresaSalva.setCnpj(empresa.getCnpj());
+        return empresaRepository.save(empresaSalva);
     }
 
     public void delete(Long id) {

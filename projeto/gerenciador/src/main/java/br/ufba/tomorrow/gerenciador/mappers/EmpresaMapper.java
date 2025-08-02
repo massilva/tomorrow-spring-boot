@@ -1,7 +1,9 @@
 package br.ufba.tomorrow.gerenciador.mappers;
 
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 import br.ufba.tomorrow.gerenciador.dtos.AtualizaEmpresaDTO;
@@ -16,7 +18,10 @@ public interface EmpresaMapper {
     @Mapping(target = "id", ignore = true)
     Empresa cadastraEmpresaDTOParaEmpresa(CadastraEmpresaDTO cadastraEmpresaDTO);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "email", ignore = true)
+    @Mapping(target = "senha", ignore = true)
     Empresa atualizaEmpresaDTOParaEmpresa(AtualizaEmpresaDTO atualizaEmpresaDTO);
 
     EmpresaSalva paraEmpresaSalva(Empresa empresa);
