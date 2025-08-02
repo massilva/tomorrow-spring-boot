@@ -1,4 +1,4 @@
-package com.exemplo.ufba.tomorrow.gerenciador.dto;
+package br.ufba.tomorrow.gerenciador.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
