@@ -1,4 +1,4 @@
-package com.exemplo.controlegastos.controlegastosspringboot.controller;
+package br.ufba.tomorrow.gerenciador.controllers;
 
 import com.exemplo.controlegastos.controlegastosspringboot.dto.EmpresaDTO;
 import com.exemplo.controlegastos.controlegastosspringboot.model.Empresa;
