@@ -1,4 +1,4 @@
-package br.ufba.tomorrow.gerenciador.dto;
+package br.ufba.tomorrow.gerenciador.dtos;
 
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
