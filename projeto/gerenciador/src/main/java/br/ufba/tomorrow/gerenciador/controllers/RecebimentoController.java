@@ -1,8 +1,8 @@
 package br.ufba.tomorrow.gerenciador.controllers;
 
-import com.exemplo.controlegastos.controlegastosspringboot.dto.EmpresaDTO;
-import com.exemplo.controlegastos.controlegastosspringboot.model.Empresa;
-import com.exemplo.controlegastos.controlegastosspringboot.service.EmpresaService;
+import com.exemplo.br.ufba.tomorrow.gerenciador.dto.EmpresaDTO;
+import com.exemplo.br.ufba.tomorrow.gerenciador.model.Empresa;
+import com.exemplo.br.ufba.tomorrow.gerenciador.service.EmpresaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
