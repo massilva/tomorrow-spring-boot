@@ -15,7 +15,7 @@ import br.ufba.tomorrow.gerenciador.services.ImpostoService;
 
 
 @RestController
-@RequestMapping("/api/impostos")
+@RequestMapping("${api.prefix}/empresa/imposto")
 @RequiredArgsConstructor
 public class ImpostoController {
 
