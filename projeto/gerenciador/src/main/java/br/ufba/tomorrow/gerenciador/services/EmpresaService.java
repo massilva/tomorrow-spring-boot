@@ -13,8 +13,12 @@ import br.ufba.tomorrow.gerenciador.dtos.AtualizaEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.dtos.CadastraEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.exceptions.NotFoundException;
 import br.ufba.tomorrow.gerenciador.mappers.EmpresaMapper;
+import br.ufba.tomorrow.gerenciador.mappers.UsuarioMapper;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
+import br.ufba.tomorrow.gerenciador.models.Usuario;
+import br.ufba.tomorrow.gerenciador.output.EmpresaSaida;
 import br.ufba.tomorrow.gerenciador.repositories.EmpresaRepository;
+import br.ufba.tomorrow.gerenciador.repositories.UsuarioRepository;
 
 @Service
 public class EmpresaService {
@@ -22,11 +26,17 @@ public class EmpresaService {
     private EmpresaRepository empresaRepository;
 
     @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Empresa salvar(CadastraEmpresaDTO cadastraEmpresaDTO) {
         Empresa empresa = EmpresaMapper.INSTANCE.cadastraEmpresaDTOParaEmpresa(cadastraEmpresaDTO);
-        empresa.setSenha(passwordEncoder.encode(empresa.getSenha()));
+        Usuario usuario = UsuarioMapper.INSTANCE.cadastraEmpresaDTOParaUsuario(cadastraEmpresaDTO);
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        usuarioRepository.save(usuario);
+        empresa.setUsuario(usuario);        
         return empresaRepository.save(empresa);
     }
 
@@ -39,8 +49,11 @@ public class EmpresaService {
         return empresaRepository.count();
     }
 
-    public List<Empresa> findAll() {
-        return empresaRepository.findAll();
+    public List<EmpresaSaida> findAll() {
+        return empresaRepository.findAll()
+            .parallelStream()
+            .map((empresa) -> EmpresaMapper.INSTANCE.paraEmpresaSaida(empresa))
+            .toList();
     }
 
     public Optional<Empresa> findById(Long id) {
@@ -50,7 +63,6 @@ public class EmpresaService {
     public Empresa update(Long id, AtualizaEmpresaDTO atualizaEmpresaDTO) {
         var empresaSalva = empresaRepository.findById(id).orElseThrow(() -> new NotFoundException());
         Empresa empresa = EmpresaMapper.INSTANCE.atualizaEmpresaDTOParaEmpresa(atualizaEmpresaDTO);
-        empresa.setSenha(passwordEncoder.encode(empresa.getSenha()));
         empresaSalva.setNomeFantasia(empresa.getNomeFantasia());
         empresaSalva.setRazaoSocial(empresa.getRazaoSocial());
         empresaSalva.setCnpj(empresa.getCnpj());

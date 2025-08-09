@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import br.ufba.tomorrow.gerenciador.dtos.RecebimentoDTO;
 import br.ufba.tomorrow.gerenciador.dtos.RecebimentoResponseDTO;
+import br.ufba.tomorrow.gerenciador.exceptions.NotFoundException;
 import br.ufba.tomorrow.gerenciador.mappers.RecebimentoMapper;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
 import br.ufba.tomorrow.gerenciador.models.Recebimento;
@@ -31,5 +32,29 @@ public class RecebimentoService {
                 .stream()
                 .map(RecebimentoMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public RecebimentoResponseDTO atualizar(Long empresaId, Long id, RecebimentoDTO dto) {
+        Recebimento recebimento = buscarPorId(empresaId, id);
+        recebimento.setCliente(dto.cliente());
+        recebimento.setValor(dto.valor());
+        recebimento.setVencimento(dto.vencimento());
+        recebimento.setRecebido(dto.recebido());
+        return RecebimentoMapper.toDTO(recebimentoRepository.save(recebimento));
+    }
+
+    public void deletar(Long empresaId, Long id) {
+        Recebimento recebimento = buscarPorId(empresaId, id);
+        recebimentoRepository.delete(recebimento);
+    }
+
+    public RecebimentoResponseDTO buscaPorId(Long empresaId, Long id) {
+        Recebimento recebimento = buscarPorId(empresaId, id);
+        return RecebimentoMapper.toDTO(recebimento);
+    }
+
+    private Recebimento buscarPorId(Long empresaId, Long id) {
+        return recebimentoRepository.findByIdAndEmpresaId(id, empresaId)
+                .orElseThrow(() -> new NotFoundException("Recebimento não encontrado"));
     }
 }

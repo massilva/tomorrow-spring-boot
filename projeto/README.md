@@ -9,7 +9,7 @@
 
 ## Estrutura do projeto
 
-Na pasta `projeto` tem a pasta do código-fonte `gerenciador`.
+Para testar o projeto, recomenda-se utilizar o VSCode e abrir a pasta do código-fonte `gerenciador`, as instruções de uso da aplicação encontra-se no README dentro dela.
 
 ### Arquitetura
 
@@ -27,8 +27,8 @@ Na pasta `projeto` tem a pasta do código-fonte `gerenciador`.
 |---|-----------------------|--------------------------------------------------------------------------------------------------------------------------|------------|---------------|
 | 1 | :white_check_mark:    | Validar os campos no cadastro de empresa                                                                                 | -          | -             |
 | 2 | :white_check_mark:    | Permitir registrar empresa                                                                                               | -          | Atividade 1   |
-| 3 | :black_square_button: | Formatar mensagem de erro (validação, notfound e etc) no registro de empresa                                             | -          | Atividade 2   |
-| 4 | :black_square_button: | Listar empresas cadastradas                                                                                              | -          | Atividade 3   |
-| 5 | :black_square_button: | Editar empresa cadastrada                                                                                                | -          | Atividade 4   |
-| 6 | :black_square_button: | Excluir empresa cadastrada                                                                                               | -          | Atividade 5   |
-| 7 | :black_square_button: | Alinhar a representação das despesas (contas a pagar) e receitas (contas a receber) com base no que foi feito por Marcus | -          | -             |
+| 3 | :white_check_mark: | Formatar mensagem de erro (validação, notfound e etc) no registro de empresa                                             | -          | Atividade 2   |
+| 4 | :white_check_mark: | Listar empresas cadastradas                                                                                              | -          | Atividade 3   |
+| 5 | :white_check_mark: | Editar empresa cadastrada                                                                                                | -          | Atividade 4   |
+| 6 | :white_check_mark: | Excluir empresa cadastrada                                                                                               | -          | Atividade 5   |
+| 7 | :white_check_mark: | Alinhar a representação das despesas (contas a pagar) e receitas (contas a receber) com base no que foi feito por Marcus | -          | -             |

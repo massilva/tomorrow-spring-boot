@@ -31,26 +31,12 @@ public class Empresa {
     @Column(unique = true, length = 14)
     private String cnpj;
 
-    @NotBlank(message = "O e-mail é obrigatório")
-    @Email(message = "E-mail inválido")
-    @Column(unique = true)
-    private String email;
-
-    @NotBlank(message = "A senha é obrigatória")
-    @Size(min = 6, max = 100, message = "A senha deve ter entre 6 e 100 caracteres")
-    private String senha;
-
-    public Empresa(Long id, String nomeFantasia, String razaoSocial, String cnpj, String email, String senha) {
-        this(nomeFantasia, razaoSocial, cnpj, email, senha);
+    @OneToOne()
+    private Usuario usuario; 
+    
+    public Empresa(Long id, String nomeFantasia, String razaoSocial, String cnpj) {
+        this(nomeFantasia, razaoSocial, cnpj);
         this.id = id;
-    }
-
-    public Empresa(String nomeFantasia, String razaoSocial, String cnpj, String email, String senha) {
-        this.nomeFantasia = nomeFantasia;
-        this.razaoSocial = razaoSocial;
-        this.cnpj = cnpj;
-        this.email = email;
-        this.senha = senha;
     }
 
     public Empresa(String nomeFantasia, String razaoSocial, String cnpj) {
@@ -66,8 +52,6 @@ public class Empresa {
                 ", nomeFantasia='" + nomeFantasia + '\'' +
                 ", razaoSocial='" + razaoSocial + '\'' +
                 ", cnpj='" + cnpj + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
                 '}';
     }
 }

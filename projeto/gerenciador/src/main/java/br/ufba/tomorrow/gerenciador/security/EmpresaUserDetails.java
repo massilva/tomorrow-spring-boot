@@ -1,4 +1,4 @@
-package br.ufba.tomorrow.gerenciador.config;
+package br.ufba.tomorrow.gerenciador.security;
 
 import br.ufba.tomorrow.gerenciador.models.Empresa;
 
@@ -13,8 +13,8 @@ public class EmpresaUserDetails implements UserDetails {
 
     @Autowired
     private Empresa empresa;
-    
-    public EmpresaUserDetails(@Autowired Empresa empresa) {
+
+    public EmpresaUserDetails(Empresa empresa) {
         this.empresa = empresa;
     }
 
@@ -25,12 +25,20 @@ public class EmpresaUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return empresa.getSenha();
+        return empresa.getUsuario().getSenha();
     }
 
     @Override
     public String getUsername() {
-        return empresa.getEmail();
+        return empresa.getUsuario().getEmail();
+    }
+
+    public Empresa getEmpresa() {
+        return this.empresa;
+    }
+
+    public Long getId() {
+        return this.empresa.getId();
     }
 
     @Override
