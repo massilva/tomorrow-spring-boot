@@ -2,6 +2,7 @@ package br.ufba.tomorrow.gerenciador.security;
 
 import br.ufba.tomorrow.gerenciador.models.Empresa;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,8 +11,9 @@ import java.util.List;
 
 public class EmpresaUserDetails implements UserDetails {
 
+    @Autowired
     private Empresa empresa;
-    
+
     public EmpresaUserDetails(Empresa empresa) {
         this.empresa = empresa;
     }
