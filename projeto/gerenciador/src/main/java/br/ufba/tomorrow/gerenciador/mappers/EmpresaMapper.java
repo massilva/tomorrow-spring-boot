@@ -16,12 +16,12 @@ public interface EmpresaMapper {
     EmpresaMapper INSTANCE = Mappers.getMapper(EmpresaMapper.class);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "usuario", ignore = true)
     Empresa cadastraEmpresaDTOParaEmpresa(CadastraEmpresaDTO cadastraEmpresaDTO);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "email", ignore = true)
-    @Mapping(target = "senha", ignore = true)
+    @Mapping(target = "usuario", ignore = true)
     Empresa atualizaEmpresaDTOParaEmpresa(AtualizaEmpresaDTO atualizaEmpresaDTO);
 
     EmpresaSalva paraEmpresaSalva(Empresa empresa);

@@ -1,4 +1,4 @@
-package br.ufba.tomorrow.gerenciador.config;
+package br.ufba.tomorrow.gerenciador.security;
 
 import br.ufba.tomorrow.gerenciador.models.Empresa;
 
@@ -25,12 +25,12 @@ public class EmpresaUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return empresa.getSenha();
+        return empresa.getUsuario().getSenha();
     }
 
     @Override
     public String getUsername() {
-        return empresa.getEmail();
+        return empresa.getUsuario().getEmail();
     }
 
     @Override
