@@ -29,4 +29,23 @@ public class RecebimentoController {
     public List<RecebimentoResponseDTO> listar(@AuthenticationPrincipal EmpresaUserDetails empresa) {
         return recebimentoService.listar(empresa.getId());
     }
+
+    @GetMapping("/{id}")
+    public RecebimentoResponseDTO buscarPorId(@AuthenticationPrincipal EmpresaUserDetails empresa,
+                                   @PathVariable Long id) {
+        return recebimentoService.buscaPorId(empresa.getId(), id);
+    }
+
+    @PutMapping("/{id}")
+    public RecebimentoResponseDTO atualizar(@AuthenticationPrincipal EmpresaUserDetails empresa,
+                                 @PathVariable Long id,
+                                 @Valid @RequestBody RecebimentoDTO dto) {
+        return recebimentoService.atualizar(empresa.getId(), id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@AuthenticationPrincipal EmpresaUserDetails empresa,
+                        @PathVariable Long id) {
+        recebimentoService.deletar(empresa.getId(), id);
+    }
 }
