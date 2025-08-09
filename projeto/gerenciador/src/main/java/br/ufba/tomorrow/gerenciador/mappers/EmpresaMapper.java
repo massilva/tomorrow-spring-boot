@@ -1,7 +1,5 @@
 package br.ufba.tomorrow.gerenciador.mappers;
 
-import java.util.function.Function;
-
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

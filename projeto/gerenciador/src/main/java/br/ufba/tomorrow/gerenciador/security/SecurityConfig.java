@@ -15,8 +15,6 @@ import org.springframework.security.config.Customizer;
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    public AuthenticationService authenticationService;
 
     @Autowired
     private EmpresaUserDetailsService empresaUserDetailsService;

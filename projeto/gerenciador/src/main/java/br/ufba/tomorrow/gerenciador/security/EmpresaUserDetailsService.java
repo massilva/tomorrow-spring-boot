@@ -1,10 +1,7 @@
 
 package br.ufba.tomorrow.gerenciador.security;
 
-
-import br.ufba.tomorrow.gerenciador.models.Empresa;
 import br.ufba.tomorrow.gerenciador.models.Usuario;
-import br.ufba.tomorrow.gerenciador.repositories.EmpresaRepository;
 import br.ufba.tomorrow.gerenciador.repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
