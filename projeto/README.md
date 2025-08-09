@@ -31,4 +31,4 @@ Para testar o projeto, recomenda-se utilizar o VSCode e abrir a pasta do código
 | 4 | :white_check_mark: | Listar empresas cadastradas                                                                                              | -          | Atividade 3   |
 | 5 | :white_check_mark: | Editar empresa cadastrada                                                                                                | -          | Atividade 4   |
 | 6 | :white_check_mark: | Excluir empresa cadastrada                                                                                               | -          | Atividade 5   |
-| 7 | :black_square_button: | Alinhar a representação das despesas (contas a pagar) e receitas (contas a receber) com base no que foi feito por Marcus | -          | -             |
+| 7 | :white_check_mark: | Alinhar a representação das despesas (contas a pagar) e receitas (contas a receber) com base no que foi feito por Marcus | -          | -             |
