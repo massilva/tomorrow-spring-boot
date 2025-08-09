@@ -1,5 +1,7 @@
 package br.ufba.tomorrow.gerenciador.mappers;
 
+import java.util.function.Function;
+
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -9,6 +11,7 @@ import org.mapstruct.factory.Mappers;
 import br.ufba.tomorrow.gerenciador.dtos.AtualizaEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.dtos.CadastraEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
+import br.ufba.tomorrow.gerenciador.output.EmpresaSaida;
 import br.ufba.tomorrow.gerenciador.output.EmpresaSalva;
 
 @Mapper
@@ -25,4 +28,7 @@ public interface EmpresaMapper {
     Empresa atualizaEmpresaDTOParaEmpresa(AtualizaEmpresaDTO atualizaEmpresaDTO);
 
     EmpresaSalva paraEmpresaSalva(Empresa empresa);
+
+    @Mapping(target = "email", source = "usuario.email")
+    EmpresaSaida paraEmpresaSaida(Empresa empresa);
 }

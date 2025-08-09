@@ -16,6 +16,7 @@ import br.ufba.tomorrow.gerenciador.mappers.EmpresaMapper;
 import br.ufba.tomorrow.gerenciador.mappers.UsuarioMapper;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
 import br.ufba.tomorrow.gerenciador.models.Usuario;
+import br.ufba.tomorrow.gerenciador.output.EmpresaSaida;
 import br.ufba.tomorrow.gerenciador.repositories.EmpresaRepository;
 import br.ufba.tomorrow.gerenciador.repositories.UsuarioRepository;
 
@@ -48,8 +49,11 @@ public class EmpresaService {
         return empresaRepository.count();
     }
 
-    public List<Empresa> findAll() {
-        return empresaRepository.findAll();
+    public List<EmpresaSaida> findAll() {
+        return empresaRepository.findAll()
+            .parallelStream()
+            .map((empresa) -> EmpresaMapper.INSTANCE.paraEmpresaSaida(empresa))
+            .toList();
     }
 
     public Optional<Empresa> findById(Long id) {

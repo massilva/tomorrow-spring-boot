@@ -20,6 +20,7 @@ import br.ufba.tomorrow.gerenciador.dtos.AtualizaEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.dtos.CadastraEmpresaDTO;
 import br.ufba.tomorrow.gerenciador.mappers.EmpresaMapper;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
+import br.ufba.tomorrow.gerenciador.output.EmpresaSaida;
 import br.ufba.tomorrow.gerenciador.output.EmpresaSalva;
 import br.ufba.tomorrow.gerenciador.services.EmpresaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -40,7 +41,7 @@ public class EmpresaController {
     }
 
     @GetMapping
-    public List<Empresa> findAll() {
+    public List<EmpresaSaida> findAll() {
         return empresaService.findAll();
     }
 
