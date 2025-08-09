@@ -22,11 +22,11 @@ public class RecebimentoController {
 
     @PostMapping
     public RecebimentoResponseDTO criar(@AuthenticationPrincipal EmpresaUserDetails empresa, @Valid @RequestBody RecebimentoDTO dto) {
-        return recebimentoService.salvar(empresa.getEmpresa().getId(), dto);
+        return recebimentoService.salvar(empresa.getId(), dto);
     }
 
     @GetMapping
     public List<RecebimentoResponseDTO> listar(@AuthenticationPrincipal EmpresaUserDetails empresa) {
-        return recebimentoService.listar(empresa.getEmpresa().getId());
+        return recebimentoService.listar(empresa.getId());
     }
 }

@@ -35,6 +35,9 @@ public class EmpresaUserDetails implements UserDetails {
         return this.empresa;
     }
 
+    public Long getId() {
+        return this.empresa.getId();
+    }
 
     @Override
     public boolean isAccountNonExpired() { return true; }
