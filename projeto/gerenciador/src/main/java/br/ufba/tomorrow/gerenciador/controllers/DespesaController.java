@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufba.tomorrow.gerenciador.dtos.DespesaDTO;
-import br.ufba.tomorrow.gerenciador.models.Despesa;
 import br.ufba.tomorrow.gerenciador.security.EmpresaUserDetails;
 import br.ufba.tomorrow.gerenciador.services.DespesaService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -24,12 +23,12 @@ public class DespesaController {
     private final DespesaService despesaService;
 
     @PostMapping
-    public Despesa criar(@AuthenticationPrincipal EmpresaUserDetails empresa, @Valid @RequestBody DespesaDTO dto) {
+    public DespesaDTO criar(@AuthenticationPrincipal EmpresaUserDetails empresa, @Valid @RequestBody DespesaDTO dto) {
         return despesaService.salvar(empresa.getId(), dto);
     }
 
     @GetMapping
-    public List<Despesa> listar(@AuthenticationPrincipal EmpresaUserDetails empresa) {
+    public List<DespesaDTO> listar(@AuthenticationPrincipal EmpresaUserDetails empresa) {
         return despesaService.listarPorEmpresa(empresa.getId());
     }
 }

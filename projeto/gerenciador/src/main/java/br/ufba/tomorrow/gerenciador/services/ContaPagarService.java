@@ -33,7 +33,7 @@ public class ContaPagarService {
 
     public List<ContaPagarDTO> listar(Long empresaId) {
         return contaPagarRepository.findByEmpresaId(empresaId)
-         .parallelStream()
+            .parallelStream()
             .map(ContaPagarMapper::toDTO)
             .toList();
     }

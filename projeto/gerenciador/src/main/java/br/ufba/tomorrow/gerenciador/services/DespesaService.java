@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.ufba.tomorrow.gerenciador.dtos.DespesaDTO;
+import br.ufba.tomorrow.gerenciador.mappers.DespesaMapper;
 import br.ufba.tomorrow.gerenciador.models.Categoria;
 import br.ufba.tomorrow.gerenciador.models.Despesa;
 import br.ufba.tomorrow.gerenciador.models.Empresa;
@@ -21,7 +22,7 @@ public class DespesaService {
     private final CategoriaRepository categoriaRepository;
     private final EmpresaService empresaService;
 
-    public Despesa salvar(Long empresaId, DespesaDTO dto) {
+    public DespesaDTO salvar(Long empresaId, DespesaDTO dto) {
         Empresa empresa = empresaService.buscarPorId(empresaId);
         Categoria categoria = categoriaRepository.findById(dto.categoriaId())
                 .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada"));
@@ -33,10 +34,13 @@ public class DespesaService {
         despesa.setEmpresa(empresa);
         despesa.setCategoria(categoria);
 
-        return despesaRepository.save(despesa);
+        return DespesaMapper.toDTO(despesaRepository.save(despesa));
     }
 
-    public List<Despesa> listarPorEmpresa(Long empresaId) {
-        return despesaRepository.findByEmpresaId(empresaId);
+    public List<DespesaDTO> listarPorEmpresa(Long empresaId) {
+        return despesaRepository.findByEmpresaId(empresaId)
+            .parallelStream()
+            .map(DespesaMapper::toDTO)
+            .toList();
     }
 }
